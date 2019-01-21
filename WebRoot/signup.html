@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>教师注册界面</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body class="login-img3-body">
+
+    <div class="container">
+
+      <form id="signupform" class="login-form"  style="margin: 160px auto 0;" action="">
+        <div class="login-wrap">
+            <p class="login-img"><!-- <i class="icon_lock_alt"></i> -->教师注册</p>
+            <div class="form-group marginBottom1">
+                <label class="col-lg-3 control-label">工号</label>
+                <div class="col-lg-8">
+                    <!-- <span class="input-group-addon"><i class="icon_profile"></i></span> -->
+                    <input id="id" name="id" type="text" class="form-control" placeholder="请输入工号" autofocus>
+                </div>
+            </div>
+            
+            <div class="form-group marginBottom2">
+                <label class="col-lg-3 control-label">姓名</label>
+                <div class="col-lg-8">
+                    <!-- <span class="input-group-addon"><i class="icon_profile"></i></span> -->
+                    <input id="name" name="name" type="text" class="form-control" placeholder="请输入用户名" autofocus>
+                </div>
+            </div>
+            
+            <div class="form-group marginBottom3">
+                <label class="col-lg-3 control-label">密码</label>
+                <div class="col-lg-8">
+                    <!-- <span class="input-group-addon"><i class="icon_profile"></i></span> -->
+                    <input id="passwd" name="passwd" type="password" class="form-control" placeholder="请输入密码" autofocus>
+                </div>
+            </div>
+           <!--  <label class="checkbox">
+               <input type="checkbox" value="remember-me"> Remember me
+               <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+           </label> -->
+            <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button> -->
+            <!-- <button class="btn btn-info btn-lg btn-block">Signup</button> -->
+            <!-- <button class="btn btn-info btn-lg btn-block" onclick="signup()">Signup</button> -->
+            <input class="btn btn-info btn-lg btn-block" type="button" name="Signup" value="Signup" id="signup" >
+        </div>
+      </form>
+    </div>
+  </body>
+  <style>
+    label{
+        width: 60px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 17px;
+    }
+    .marginBottom1{
+      margin-bottom: 60px;
+    }
+    .marginBottom2{
+      margin-bottom: 110px;
+    }
+    .marginBottom3{
+      margin-bottom: 170px;
+    }
+  </style>
+  <script src="js/jquery-3.2.0.min.js"></script>
+  <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+  <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+
+  <script>
+  $(document).ready(function() {
+      $('#signupform').bootstrapValidator({
+          fields: {
+              id: {
+                    message: '工号验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '工号不能为空'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 6,
+                            message: '工号长度必须是3~6位数字'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+$/,
+                            message: '工号只能包含数字'
+                        }
+                    }
+              },
+              name: {
+                    message: '姓名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 12,
+                            message: '姓名必须为3到12个字母'
+                        },
+                        regexp: {
+                            regexp: /^[A-Za-z]+$/,
+                            message: '姓名只能包含字母'
+                        }
+                    }
+
+              },
+              passwd: {
+                    message: '密码验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 12,
+                            message: '密码必须为3到12个字符'
+                        },
+                        regexp: {
+                            regexp: /^[0-9A-Za-z_]+$/,
+                            message: '密码只能包含数字或大小写英文字符或下划线'
+                        }
+                    }
+              }
+          }
+      });
+  });
+  
+  $("#signup").click(function () {
+  			var id = $("#id").val();
+   			var name = $("#name").val();
+    		var passwd = $("#passwd").val();
+			 if (id!=""&&name!=""&&passwd!=""){
+            $.ajax({
+                url : 'http://47.100.162.180:8080/coursemgmt/teachers',
+                type : 'POST',
+                async : false,
+                contentType:"application/json",
+                data : JSON.stringify({
+                    "tId" : id,
+          			"tName" : name,
+          			"tPasswd" : passwd
+                }),
+                xhrFields:{withCredentials: true},
+              	success : function(data) {
+          			console.log(data);
+          			alert("注册成功");
+          			window.location.href="login.html";
+        		},
+        		error : function(returndata) {
+        			console.log("error");
+		}
+      });
+    }else{
+    	console.log("null value");
+    	if(id=="")
+    		{
+    			alert("请输入工号");
+    		}
+    		else if(name=="")
+    			{
+    				alert("请输入用户名");
+    			}
+    	else
+    		alert("请输入密码");
+    		
+    	
+    }
+    })
+           
+        
+
+  </script>
+</html>

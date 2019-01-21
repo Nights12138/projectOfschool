@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>  
+<!-- 	<constant name="struts.custom.i18n.resources" value="mess" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<constant name="struts.multipart.maxSize" value="2000000000" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	表示Action由Spring来进行创建，可以直接使用Spring依赖注入来注入
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	 -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!-- 默认访问action结尾的方式 -->
+	<constant name="struts.action.extension" value="action,do,,"/>
+	<!-- 修改默认文件上传的大小 -->
+	<constant name="struts.multipart.maxSize" value="2097152000"></constant>
+   <!-- strut标签使用的模板freemarker -->
+   <constant name="struts.ui.theme" value="simple"></constant>
+   <!-- 表示Action由Spring来进行创建，可以直接使用Spring依赖注入来注入 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 定义异常处理界面 -->
+	
+	<package name="default" namespace="/" extends="json-default">
+    	<action name="teacherAction" class="com.coursemgmt.action.TeacherAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="courseAction" class="com.coursemgmt.action.CourseAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="classesAction" class="com.coursemgmt.action.ClassesAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="studentAction" class="com.coursemgmt.action.StudentAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="wechatpushAction" class="com.coursemgmt.action.WechatpushAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="pushClickRecAction" class="com.coursemgmt.action.PushClickRecAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+    	<action name="qaAction" class="com.coursemgmt.action.QaAction">
+    		<interceptor-ref name="json"/>
+	   		<result type="json">
+	   		 <param name="root">json</param>  
+	   		 </result>
+    	</action>
+	</package>
+</struts>
+
+
+
+
+
+
